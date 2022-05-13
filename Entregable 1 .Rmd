@@ -1,0 +1,218 @@
+---
+title: "Entregable2"
+author: "diego asencios ore"
+date: "11/5/2022"
+output: html_document
+---
+#1)variables
+El presente trabajo va tratar de encontrar cuales son los principales factores que explican la desigualdad de género a nivel mundial. Para comenzar con el trabajo tenemos como variable independiente a Gender Inequality Index (desigualdadGenero), que cuando mayor sea el valor del Gll value, mayor es la disparidad entre mujeres y hombres y mayores pérdidas para el desarrollo humano. Ademas, tenemos como variables dependientes a Political voice (VozPolitica), que trata sobre el porcentaje de mujeres en el número total de representantes de la cámara baja o única del Parlamento. También, Población con secundaria completa (SecundariaC), que es una variable que trata sobre el porcentaje de personas mayores de 25 años que han alcanzado el a estudiar en el nivel de secundaria (pero no necesariamente completarlo). Por último, la variable Total unemployment rate -women (DesempleoMuj), que es sobre la proporción de mujeres desempleadas.
+     
+#2)justificacion de las variables 
+Para la justificación de las variables, comenzamos con SecundariaC, lo que se desea con esta variable es demostrar que el nivel educativo en la población puede explicar esta desigualdad de clases. Según Martínez, una de las razones principales por lo cual se reproduce esta desigualdad de género, se debe al nivel educativo que pueda alcanzar una sociedad. Mientras más educada sea la población menor desigualdad de género se va a percibir. (1-2). Luego, la variable VozPolitica es necesaria para observar que tan presentes están las mujeres en la política. Como menciona Ranaboldo y Bustelo Ruesta, los congresos o parlamentos son una forma de representación de la población. Al mirar la poca proporción de las mujeres se puede observar este Estado patriarcal. Además, las pocas mujeres que están en la política tienen muchas obstrucciones para lograr políticas publicas que beneficien a su género. Esto seria parte de una cadena, en donde la mujer no tiene una ayuda del Estado en situaciones que las puedan desfavorecer. Replicándose en la educación, en los empleos y en su vida social. Por último, la variable DesempleoMuj, se encarga de ver el porcentaje de mujeres desempleadas. Se Torns, esta variable podría explicar por que hay una diferenciación en torno a la vida social, ya que al observar la cantidad de mujeres sin trabajo, pueden ser por dos causas. La primera, el esposo trabaja y ella cuida de los niños. La segunda, las mujeres no logran tener una igualdad de oportunidades con los hombres en el trabajo por el costo que eso significa. Además, que capaz no tengan las condiciones igualadas en lo que se refiere a la educación. En conclusión, todas las variables que se van a usar sirven para explicar de alguna manera la desigualdad de género en el mundo.
+
+
+ 
+
+#4)Analsis descriptivo de las variables elegidas
+```{r include=FALSE}
+library(rio)
+data = import("https://github.com/diegoasencios2010/PC1_EST/blob/main/desigualdad.xlsx?raw=true")
+str(data)
+```
+
+#sobre la variable vozPolitica
+
+```{r echo=FALSE, fig.height=4, fig.width=4}
+str(data$VozPolitica)
+summary(data$VozPolitica)
+boxplot(data$VozPolitica, main= "Participación femenina en política", col="green", ylab= "Porcentaje de representación")
+  ```
+En esta variable podemos observar como el porcentaje de representación feminina en el congreso está en 24%. Esto nos indica que solo una cuarta parte es para las mujeres, siendo in visibilizadas por la mayoría masculina. Se puede observar como existe algún pais que no tiene nada de mujeres en la política. Mientras, que como máximo podemos ver a un pais con 61.3% de mujeres. Esto es algo increíble, observando la media, son pocos los países que deben tener a las mujeres como mayoría en la política. La dispersión de datos está en 16% y 32.5% de representación. Entonces, analizando la data, nos damos con la sorpresa que solo dos países (Bolivia y Rwanda) tienen una representación una fuerte representación femenina. Siendo, estos dos países considerados de tercer mundo. Irónicamente, otros dos países de este tercer mundo son los que tienen el menor indice de porcentaje como Yemen y Haití. Algo muy desalentador es que la mayoría de países solo tienen a un tercio o un cuarto de representación en la Cámara baja o en su parlamento o congreso.
+
+#Sobre la variable DesempleoMuj
+```{r echo=FALSE, fig.height=4, fig.width=4}
+str(data$DesempleoMuj)
+summary(data$DesempleoMuj)
+boxplot(data$DesempleoMuj, main="Proporción de desempleo en Mujeres 
+    en relación a los hombres" , col="blue", ylab= "Porcentaje de desempleo")
+```
+En esta variable podemos observar que la proporcionalidad, en algunos países es tan relativamente equitativos, en otros desbanlanceado para los hombres. Pero, la mayor preocupación está en las mujeres. Como podemos observar la media es 1.237 lo que indiciaria que existe una mayor tendencia de que una mujer este desempleada que los hombres. Incluso, sé ha logrado obtener una proporción de 2.330, que significaría que las mujeres normalmente no tienen trabajo, aun teniendo la posibilidad y la capacidad de laborar. En otro caso, es que se ha encontrado un mínimo de 0.5, que significaría que hay una mayor tendencia a que los hombres sean los desempleados La mayor dispersión de proporciones de desempleo se encuentra entre 0.930 y 1.480. Existe una tendencia a que la cantidad de mujeres desempleadas sea mayor que los hombres.
+
+#sobre la variable SecundariaC
+```{r echo=FALSE, fig.height=4, fig.width=4}
+str(data$SecundariaC)
+summary(data$SecundariaC)
+boxplot(data$SecundariaC, main="Proporción de personas que 
+        estudiaron secundaria" , col="red", xlab= "Personas de 25 años a más ", ylab="porcentaje")
+```
+En esta variable podemos observar que la población mayor de 25 años a más tiende a alcanzar el nivel secundario, ya que la media es de 60.65%. Incluso, existe el máximo de 100, que indiciaria que toda su población a llegar al estudiar la secundaria. Pero, en contra posición existe un mínimo de 1.74, lo cual indiciaria que llegar a la educación secundaria en ese pais es un lujo de pocas personas. La dispersión de datos está concentrado en 36.73% y 89.18%. Indicando que hay no hay una Concentracion tan fuerte de datos. Observando los datos, podemos concluir que al menos una gran parte de la población en los países logra estudiar secundaria. Sin embargo, se tiene que recordar que la secundaria es el tercer nivel educativo (inicial, primaria y secundaria). NO podemos tener la certeza de que este nivel sea lo suficiente para educar a las personas.
+
+#Sobre la variable desigualdadGenero
+```{r echo=FALSE, fig.height=4, fig.width=4}
+str(data$DesigualdadGenero)
+summary(data$DesigualdadGenero)
+boxplot(data$DesigualdadGenero, main="Desigualdad de género" , col="pink", ylab="Relación entre mujeres y hombres")
+```
+En la variable principal para nuestra investigación, podemos observar como la media (0.3485) indica que existe una desigualdad no tan pronunciada. Su mediana también esta cerca a la media, lo que nos muestra que no hay una separación brusca de valores. Sin embargo, la dispersión de los datos es tan entre 0.1300 y 0.5100, lo que indica que la mayoría de países, SE muestra esta desigualdad de forma bajá y media. La preocupación es encontrar un máximo de 0.83, lo que indiciaria que el pais es totalmente desigual, es decir, las mujeres no son tratadas como iguales. Esto se podría dar en países del medio oriente, ya que su religión degrada la imagen de las mujeres. Un punto positivo, son los datos de 0.0400 que se han encontrado, perteneciendo a los países europeos como Finlandia y Noruega. Mostrando lo igualitarios que pueden ser su sociedad, ya que no se permite casi nada de desigualdad.
+
+#analisis bivariado
+Graficos de la correlación
+```{r echo=FALSE, fig.height=3.5, fig.width=3.5}
+plot(data$DesigualdadGenero, data$VozPolitica, main="Primera correlación", xlab = "Desigualdad de género", ylab="representación politica " )
+plot(data$DesigualdadGenero, data$SecundariaC, main="Segunda correlación", xlab= "Desigualdad de género", ylab= "Estudio nivel secundaria")
+plot(data$DesigualdadGenero, data$DesempleoMuj, main="Tercera correlación", xlab = "Desigualdad de género", ylab="Desempleo de la mujer")
+```
+Prueba de correlación de Person
+
+```{r}
+cor.test(data$DesigualdadGenero, data$VozPolitica, method = c("pearson"))
+#-0.400137, el pvalor es menor que 0.05
+cor.test(data$DesigualdadGenero, data$DesempleoMuj, method = c("pearson"))
+#0.353976, el pvalor es menor que 0.05
+cor.test(data$DesigualdadGenero, data$SecundariaC, method = c("pearson"))
+#-0.808374, el pvalor es menor que 0.05 
+```
+
+Si observamos el grafico de la correlación entre la variable de DesigualdadGenero y vozpolitica, podemos observar que se observa como los valores tienen una dirección inversa a la desigualdad. Luego del cor.test, podemos observar que es una relacion de intensidad media(-0.400137). Ademas, que con el pvalor menor a 0.05 sabemos que si hay una correlación. Esto significa que a mayor indice de desigualdad, menor porcentaje de mujeres en las instituciones políticas (camara y parlamento). En caso del grafico de correlación entre la variable de DesigualdadGenero y DesemploMuj, podemos observar como los gráficos crecen medianamente, lo que indiciaria que es directa. Para confirmarlo se usa el cor.test, indicándonos que si existe una correlación, ya que el pvalor es menor a 0.05 y que esta es directa y de intensidad medía, pues el valor es de 0.35976. Por último, el grafico de correlación entre la variable de DesigualdadGenero y SecundariaC, se puede observar que existe una relacion inversa y que es una relacion fuerte. Para confirmarlo, usamos el cor.test, en donde el pvalor es menor a 0.05 (confirma que hay correlación). Ademas, nos da el valor de -0.808374 que indica que hay una relacion inversa y fuerte.
+
+#5) Modelos de regresión simple 
+a) Variable dependiente: VozPolitica, Variable independiente: DesigualdadGenero
+```{r}
+modelo1=lm(DesigualdadGenero~VozPolitica,data=data)
+summary(modelo1)
+```
+aporte de la variable en el modelo:
+```{r}
+library(lm.beta)
+lm.beta(modelo1)
+```
+El pvalor es menor de 0.05, este modelo es valido. Segun el R2 ajustado, el modelo explica un 15.31%. Ademas, la varaible aporta al modelo un -0.0400173
+
+b) variable dependiente: DesempleoMuj, variable independiente: DesigualdadGenero
+```{r}
+modelo2=lm(DesigualdadGenero~DesempleoMuj,data=data)
+summary(modelo2)
+
+```
+
+```{r}
+lm.beta(modelo2)
+
+```
+
+El pvalor es menor a 0.05, lo que indica que el modelo es valido. Segun el R2 ajustado el modelo explica un 11.79%. Ademas, la variable aporta al modelo un 0.3539376
+
+c) variable dependiente: SecundariaC, variable independiente: DesigualdadGenero
+```{r}
+modelo3=lm(DesigualdadGenero~SecundariaC,data=data)
+summary(modelo3)
+```
+
+```{r}
+lm.beta(modelo3)
+```
+
+En esta variable, el pvalor es menor a 0.05 lo que significa que el modelo es valido. Segun el R2 ajustado, el modelo explica un 65.06% . Ademas, esta variable aporta al modelo un -0.808374
+
+
+
+En la comparación de los modelos podemos observar que todas son validas, ya que tienen un pvalor menor a 0.05. Las diferencias se pueden observar en que tanto pueden predecir según el R ajustado, ya que con la variable vozPolitica solo tiene un 15%. Cerca de este porcentaje se encuentra la variable DesempleoMJ, que solo tiene un 11%. La variable que explica de mayor manera es Secundaria, ya que poseé un 65.06. Esto da entender que, aunque las otras dos variables tengan una correlación de mediana intensidad, esto no se traduce en la explicación de su modelo. Sin embargo, la que mayor correlación tuvo (-0.8), es la que mayor explicación poseé. La variable Secundaria, es la que mejor desempeño o posibilidad tiene para convertirse en un factor que explique la desigualdad de género. Mostrando que mientras más población alcance secundaria, menor desigualdad de género va a existir. La educación disminuye las desigualdades de género
+
+#6)modelos de regresion multiple
+a)variables dependientes: SecundariaC y DesempleoMuj , variable independiente: DesigualdadGenero
+```{r}
+modelo4 <- lm(data$DesigualdadGenero~data$SecundariaC + data$DesempleoMuj)
+summary(modelo4)
+```
+
+```{r}
+lm.beta(modelo4)
+```
+El modelo es valido, ya que el pvalor es menor a 0.05. Este logra explicar un 66.04% según el R2 ajustado. Ademas, la variable de DesempleoMuj aporta un 0.1177949 del modelo y la de SecundariaC aporta un  -0.7723591. Ademas, las variables tienen un pvalor menor a 0.05, lo que certifica que aporten al modelo
+
+b)variables dependientes: SecundariaC , DesempleoMuj y VozPolitica , variable independiente: DesigualdadGenero
+```{r}
+modelo5 <- lm(data$DesigualdadGenero~data$SecundariaC + data$DesempleoMuj +data$VozPolitica)
+summary(modelo5)
+```
+
+```{r}
+lm.beta(modelo5)
+```
+
+En este modelo, no todas las variables son menor a 0.05, como podemos observar la variable de DesempleoMuj posee un p valor de 0.183. Esto indica ria que la variable no aporta al modelo. Sin embargo, el modelo es valido, ya que su pvalor es menor a 0.05. Ademas este modelo explica en un 73.2% la desigualdad de género, según el R2 ajustado. Las variables SecundariaC aporta un -0.74723574, la variable DesempleoMuj aporta al 0.06758834 y la variable VozPolitica aporta un -0.27669424. En este caso, la variable DesempleoMuj puede ser que aporte mínimamente, pero parece no ser relevante al modelo.
+```{r}
+library(stargazer)
+stargazer(modelo4,modelo5, type="text")
+```
+
+¿Cuál explica más? ¿Cuál elegiría? ¿Por qué?
+El modelo que explica más es el de 3 variables con un porcentaje de explicación de un 73.9% según R2 ajustado. Elegiría el modelo de las 3 variables, ya que ofrece mayor explicación que el otro. Sin embargo, la unicá complicación que tendría con este, seria la variable de DesempleoMuj, pues esta aporta casi nada al modelo. No obstante, el que el modelo tenga un pvalor menor a 0.05,me da la seguridad de elegir a este. Ademas, si se busca bibliografía, estas 3 es tan entrelazadas de alguna manera. Por ejemplo, la representación política de las mujeres es muy importante, ya que en el caso de que no haya un grupo de estas. No habría muchas políticas publicas que ayuden a este sector. En este campo esta la educación y el desempleo. Si se aplican políticas para disminuir las enseñar sobre la igualdad de género a los jóvenes, es mucho más fácil poder disminuir esta brecha de desigualdad. Ademas, en el ámbito laboral se pueden aplicar incentivos para que las mujeres sean contratadas. Observándolo de otra manera, si se da una enseñanza de manera igualitaria, las condiciones de buscar trabajo se igualaría, lo que provocaría una disminución de esta brecha. En conclusión, elijo el modelo 3, por su porcentaje de explicación y por la relacion que tienen estas variables
+#7) Ecuacion del modelo 
+
+y = 0.725 -0.005a +0.035b - 0.005c
+
+a= SecundariaC                 
+b= DesempleoMuj                
+c= VozPolitica                                         
+
+Vamos a predecir los valores de un país, en este caso sera Perú
+a=57.41
+b= 1.42
+c= 27.7
+
+Si reemplazamos los valores el resultado es de 0.34915
+
+Se esperaba un valor de 0.38, pero en la ecuación salio uno de 0.34915. Creo que el error de estar aproximación está en la variable DesempleoMuj. Al parecer distorsiono la ecuación. Teniendo una gran porcentaje de explicación. En conclusión, creo que el modelo de 3 variables puede explicar de manera no tan exacta la desigualdad de género. Sin embargo, si algo se puede rescatar es la variable SecundariaC, que tiene una relacion e importancia en el modelo muy fuerte. Al parecer el desempleo de las mujeres no es un factor que pueda explicar esta desigualdad, puede ser porque más que una explicación sea una consecuencia.Esto se debe a que la mayoría de personas que quieren trabajar tienen una edad mayor de 16 años. En este punto ya eres una persona más en la sociedad, siendo afectado por todo lo que se te enseño antes.
+
+
+ 
+Linealidad: se asume relación lineal entre Y y Xs
+```{r}
+plot(modelo5, 1)
+```
+
+2. Homocedasticidad: se asume que el error del modelo de regresión no afecta la varianza o dispersión de la estimación.
+```{r}
+plot(modelo5, 3)
+```
+
+También podemos utilizar el test de Breusch-Pagan:
+```{r}
+library(lmtest)
+bptest(modelo5)
+```
+  
+
+
+Normalidad de los residuos: los residuos, la diferencia entre desigualdad de genero y desigualdaddegenero deben distribuirse de manera normal. 
+```{r}
+plot(modelo5, 2)
+```
+
+Podemos aplicar el test de Shapiro a los residuos:
+```{r}
+shapiro.test(modelo5$residuals)
+```
+
+
+No multicolinelidad: si los predictores tienen una correlación muy alta entre sí, hay multicolinealidad, lo cual no es deseable. Vemos que ninguno es mayor a 5, por lo que no hay problema. 
+```{r}
+library(DescTools)
+VIF(modelo5) 
+```
+
+Valores influyentes: Hay casos particulares, que tienen la capacidad de trastocar lo que el modelo representa. A veces detectándolos y suprimiéndolos, podemos ver un mejor modelo:
+
+```{r}
+plot(modelo5, 5)
+```
+
+Aquí podemos ver si es que existen los casos influyentes. Normalmente le prestamos atencion al indice de Cook y a los valores predecidos (los hat values):
+
+```{r}
+checkReg2=as.data.frame(influence.measures(modelo5)$is.inf)
+head(checkReg2)
+
+checkReg2[checkReg2$cook.d & checkReg2$hat,]
+```
